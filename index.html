@@ -184,25 +184,24 @@
   var fireballSize = 22;
 //функция для определения скорости фаербола в зависимости от направления
   var getFireballSpeed = function (left) {
-  var FireballSpeed =left?5:2;
-  return FireballSpeed;
-};
+      return left?5:2;
+  };
   var wizardSpeed=3;
   var wizardWidth=70;
   // функция для установления пропорций волшебника
   var getWizardHeight= function () {
-    var WizardHeight= 1.337*wizardWidth;
-    return WizardHeight;
+      var wizardHeight= 1.337*wizardWidth;
+      return wizardHeight;
   };
   // функция для определения расположения волшебника в центре поля по ширине
-    var getWizardX=function (width) {
-    var WizardX = width/2;
-    return WizardX;
+  var getWizardX=function (width) {
+      var wizardX = width/2- wizardWidth/2;
+      return wizardX;
   };
 // функция для определения расположения волшебника в центре поля по высоте 2/3 от земли
-    var getWizardY =function (height) {
-    var WizardY= (height*2/3);
-    return WizardY;
+  var getWizardY =function (height) {
+      var wizardY= height/3;
+      return wizardY;
   }
 
 </script>
