@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Наталья Глебова](https://up.htmlacademy.ru/javascript/18/user/620321).
-* Наставник: `Неизвестно`.
+* Наставник: [Татьяна Алексеева](https://htmlacademy.ru/profile/id1171155).
 
 ---
 
