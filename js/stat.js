@@ -60,6 +60,6 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = hslColor;
     }
+    ctx.fillRect(GRAPH_X + (GRAPH_WIDTH + GAP) * i, STAT_HIGHT - GRAPH_HIGHT * Math.round(times[i]) / maxTime, GRAPH_WIDTH, GRAPH_HIGHT * Math.round(times[i]) / maxTime);
   }
-  ctx.fillRect(GRAPH_X + (GRAPH_WIDTH + GAP) * i, STAT_HIGHT - GRAPH_HIGHT * Math.round(times[i]) / maxTime, GRAPH_WIDTH, GRAPH_HIGHT * Math.round(times[i]) / maxTime);
 };
