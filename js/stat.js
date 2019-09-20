@@ -1,30 +1,11 @@
 'use strict';
 
 window.renderStatistics = function (ctx, names, times) {
-  // функция для рисования облака и тени
-  var paintCloudAndShadow = function (CLOUD_X, CLOUD_HIGHT, CLOUD_WIDTH, START_POINT, ANGLE_POINT, SHADOW_MOVE) {
-    ctx.beginPath();
-    ctx.moveTo(START_POINT, SHADOW_MOVE);
-    ctx.lineTo(CLOUD_X + SHADOW_MOVE, ANGLE_POINT + SHADOW_MOVE);
-    ctx.lineTo(CLOUD_X + SHADOW_MOVE, CLOUD_HIGHT + SHADOW_MOVE);
-    ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, CLOUD_HIGHT + SHADOW_MOVE);
-    ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, CLOUD_HIGHT - ANGLE_POINT + SHADOW_MOVE);
-    ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, ANGLE_POINT + SHADOW_MOVE);
-    ctx.fill();
-  };
-
-  // рисование тени облака
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  paintCloudAndShadow(100, 270, 420, 320, 40, 10);
-  // рисование самого облака
-  ctx.fillStyle = '#fff';
-  paintCloudAndShadow(100, 270, 420, 320, 40, 0);
   ctx.font = '16px PT Mono';
   ctx.fillStyle = '#000';
   ctx.fillText('Ура вы победили!', 220, 30);
   ctx.fillText('Список результатов:', 210, 60);
   // поиск максимального времени в массиве
-
   var getMaxElement = function (arr) {
     var maxElement = arr[0];
     for (var i = 1; i < arr.length; i++) {
@@ -56,3 +37,32 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(GRAPH_X + (GRAPH_WIDTH + GAP) * i, STAT_HIGHT - GRAPH_HIGHT * Math.round(times[i]) / maxTime, GRAPH_WIDTH, GRAPH_HIGHT * Math.round(times[i]) / maxTime);
   }
 };
+// функция для рисования облака и тени
+var paintCloudAndShadow = function (CLOUD_X, CLOUD_HIGHT, CLOUD_WIDTH, START_POINT, ANGLE_POINT, SHADOW_MOVE, cloudColor, ctx) {
+  ctx.beginPath();
+  ctx.moveTo(START_POINT, SHADOW_MOVE);
+  ctx.lineTo(CLOUD_X + SHADOW_MOVE, ANGLE_POINT + SHADOW_MOVE);
+  ctx.lineTo(CLOUD_X + SHADOW_MOVE, CLOUD_HIGHT + SHADOW_MOVE);
+  ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, CLOUD_HIGHT + SHADOW_MOVE);
+  ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, CLOUD_HIGHT - ANGLE_POINT + SHADOW_MOVE);
+  ctx.lineTo(CLOUD_X + CLOUD_WIDTH + SHADOW_MOVE, ANGLE_POINT + SHADOW_MOVE);
+  ctx.fill();
+  ctx.fillStyle = cloudColor;
+};
+
+// рисование тени облака
+var CLOUD_X = 100;
+var CLOUD_HIGHT = 270;
+var CLOUD_WIDTH = 420;
+var START_POINT = 320;
+var ANGLE_POINT = 40;
+var SHADOW_MOVE = 10;
+var cloudColor = 'rgba(0, 0, 0, 0.7)';
+
+// вынужденное объявление , т.к.  иначе lint считает что переменная не определена
+var ctx;
+paintCloudAndShadow(CLOUD_X, CLOUD_HIGHT, CLOUD_WIDTH, START_POINT, ANGLE_POINT, SHADOW_MOVE, cloudColor, ctx);
+// рисование самого облака
+SHADOW_MOVE = 10;
+cloudColor = '#fff';
+paintCloudAndShadow(CLOUD_X, CLOUD_HIGHT, CLOUD_WIDTH, START_POINT, ANGLE_POINT, SHADOW_MOVE, cloudColor, ctx);
