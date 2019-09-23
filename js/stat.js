@@ -9,6 +9,7 @@ window.renderStatistics = function (ctx, names, times) {
   var CLOUD_COLOR = 'rgba(0, 0, 0, 0.7)';
   // рисование тени
   paintCloudAndShadow(CLOUD_X, CLOUD_HIGHT, CLOUD_WIDTH, START_POINT, ANGLE_POINT, SHADOW_MOVE, CLOUD_COLOR, ctx);
+
   // рисование облака
   SHADOW_MOVE = 0;
   CLOUD_COLOR = '#FFF';
@@ -25,16 +26,7 @@ window.renderStatistics = function (ctx, names, times) {
   var RESULT_TEXT_Y = 60;
   printWelcomeWords(FONT_STYLE, TEXT_COLOR, WINNER_TEXT, WINNER_TEXT_X, WINNER_TEXT_Y, RESULT_TEXT, RESULT_TEXT_X, RESULT_TEXT_Y, ctx);
 
-  // поиск максимального времени в массиве
-  var getMaxElement = function (arr) {
-    var maxElement = arr[0];
-    for (var i = 1; i < arr.length; i++) {
-      if (arr[i] > maxElement) {
-        maxElement = arr[i];
-      }
-    }
-    return maxElement;
-  };
+  // поиск максимального времени
   var maxTime = getMaxElement(times);
 
   // отрисовка гистограммы
@@ -78,4 +70,15 @@ var printWelcomeWords = function (FONT_STYLE, TEXT_COLOR, WINNER_TEXT, WINNER_TE
   ctx.fillStyle = TEXT_COLOR;
   ctx.fillText(WINNER_TEXT, WINNER_TEXT_X, WINNER_TEXT_Y);
   ctx.fillText(RESULT_TEXT, RESULT_TEXT_X, RESULT_TEXT_Y);
+};
+
+// функция поиска максимального значения в массиве
+var getMaxElement = function (arr) {
+  var maxElement = arr[0];
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  return maxElement;
 };
