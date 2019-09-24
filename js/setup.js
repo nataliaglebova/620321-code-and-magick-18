@@ -46,4 +46,5 @@ for (var k = 0; k < PLAYERS_NUMBER; k++) {
   fragment.appendChild(renderWizard(characters, k));
 }
 // вставка фрагмента
-similarListElement.appendChild(fragment);
+var setupSimilarList = document.querySelector('.setup-similar-list');
+setupSimilarList.appendChild(fragment);
