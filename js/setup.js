@@ -60,9 +60,7 @@ var openSetupWindow = function () {
 
 // -- по клику
 var setupOpenBlock = document.querySelector('.setup-open');
-setupOpenBlock.addEventListener('click', function () {
-  openSetupWindow();
-});
+setupOpenBlock.addEventListener('click', openSetupWindow);
 
 // -- по кнопкам на клавиатуре ENTER
 setupOpenBlock.addEventListener('keydown', function (evt) {
@@ -79,9 +77,7 @@ var closeSetupWindow = function () {
 
 // -- по клику
 var setupCloseBlock = setupBlock.querySelector('.setup-close');
-setupCloseBlock.addEventListener('click', function () {
-  closeSetupWindow();
-});
+setupCloseBlock.addEventListener('click', closeSetupWindow);
 
 // -- по кнопкам на клавиатуре ESC
 var userNameInput = setupBlock.querySelector('.setup-user-name');
