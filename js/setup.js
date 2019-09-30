@@ -57,6 +57,7 @@ var ENTER_KEYCODE = 13;
 var openSetupWindow = function () {
   setupBlock.classList.remove('hidden');
 };
+
 // -- по клику
 var setupOpenBlock = document.querySelector('.setup-open');
 setupOpenBlock.addEventListener('click', function () {
@@ -74,7 +75,6 @@ setupOpenBlock.addEventListener('keydown', function (evt) {
 // закрытие окна настройки персонажа
 var closeSetupWindow = function () {
   setupBlock.classList.add('hidden');
-  document.removeEventListener('keydown', onSetupBlockEscPress);
 };
 
 // -- по клику
@@ -100,15 +100,22 @@ var onCloseBlockEnterPress = function (evt) {
 };
 document.addEventListener('keydown', onCloseBlockEnterPress);
 
+// валидация имени персонажа
+userNameInput.setAttribute('minlength', '2');
+
 // отправка формы при нажатии на кнопку СОХРАНИТЬ
 var formSetup = document.querySelector('.setup-wizard-form');
 var formSetupButton = formSetup.querySelector('.setup-submit');
+
 var onformSetupButtonClick = function () {
   formSetup.action = 'https://js.dump.academy/code-and-magick';
   formSetup.method = 'post';
   formSetup.enctype = 'multipart/form-data';
-  formSetup.submit();
+  if (userNameInput.validity.valid) {
+    formSetup.submit();
+  }
 };
+
 formSetupButton.addEventListener('click', onformSetupButtonClick);
 
 // отправка формы при нажатии на кнопку ENTER
@@ -119,8 +126,6 @@ var onformSetupPress = function (evt) {
 };
 formSetupButton.addEventListener('keydown', onformSetupPress);
 
-// валидация имени персонажа
-userNameInput.setAttribute('minlength', '2');
 
 // массив цветов фаерболов
 var fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
