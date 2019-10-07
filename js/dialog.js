@@ -44,3 +44,43 @@
   };
   document.addEventListener('keydown', onCloseBlockEnterPress);
 })();
+// перемещение окна
+var uploadBlock = document.querySelector('.upload');
+uploadBlock.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+  var dragged = false;
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+    window.util.setupBlock.style.top = (window.util.setupBlock.offsetTop - shift.y) + 'px';
+    window.util.setupBlock.style.left = (window.util.setupBlock.offsetLeft - shift.x) + 'px';
+  };
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
+    if (dragged) {
+      var onClickPreventDefault = function () {
+        evt.preventDefault();
+        uploadBlock.removeEventListener('click', onClickPreventDefault);
+      };
+      uploadBlock.addEventListener('click', onClickPreventDefault);
+    }
+
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
