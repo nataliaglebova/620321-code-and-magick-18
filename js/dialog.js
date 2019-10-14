@@ -55,6 +55,7 @@ uploadBlock.addEventListener('mousedown', function (evt) {
   var dragged = false;
   var onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
+    dragged = true;
     var shift = {
       x: startCoords.x - moveEvt.clientX,
       y: startCoords.y - moveEvt.clientY
@@ -70,10 +71,9 @@ uploadBlock.addEventListener('mousedown', function (evt) {
     upEvt.preventDefault();
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
-
     if (dragged) {
-      var onClickPreventDefault = function () {
-        evt.preventDefault();
+      var onClickPreventDefault = function (prevt) {
+        prevt.preventDefault();
         uploadBlock.removeEventListener('click', onClickPreventDefault);
       };
       uploadBlock.addEventListener('click', onClickPreventDefault);
